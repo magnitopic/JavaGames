@@ -1,4 +1,4 @@
-package src.RockPaperScissors;
+package RockPaperScissors;
 
 import java.util.Scanner;
 
