@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class SetZeroes {
 	private ArrayList<ArrayList<Integer>> matrix;
 	private ArrayList<ArrayList<Integer>> zeroes;
+	private double probability = 10;
 	private int height = 5;
 	private int width = 5;
 
@@ -20,11 +21,20 @@ public class SetZeroes {
 		this.zeroes = new ArrayList<ArrayList<Integer>>();
 	}
 
+	public SetZeroes(int height, int width, int probability) {
+		this.height = height;
+		this.width = width;
+		this.probability = probability;
+		this.matrix = new ArrayList<ArrayList<Integer>>();
+		this.zeroes = new ArrayList<ArrayList<Integer>>();
+	}
+
 	private void makematrix() {
 		for (int i = 0; i < this.height; i++) {
 			ArrayList<Integer> a = new ArrayList<Integer>();
 			for (int j = 0; j < this.width; j++) {
-				if (Math.floor(Math.random() * 10) == 0) { // 10% probability of getting 0
+				double rnd = Math.random();
+				if (rnd < (probability / 100)) {
 					a.add(Integer.valueOf(0));
 				} else {
 					a.add(Integer.valueOf(1));
@@ -67,8 +77,12 @@ public class SetZeroes {
 	}
 
 	public static void main(String[] args) {
-		SetZeroes a = new SetZeroes(); // It could start like this for default parameters or specify matrix height and
-										// width
+		// SetZeroes can be created with no parameters and use the default
+		// Or you could specify the matrix height and width pasign the value as
+		// parameters
+		// The probability of a 0 apearing can also be overdiden(by default 10%) by
+		// beeing passed alongside width and height
+		SetZeroes a = new SetZeroes();
 		a.makematrix();
 		a.getmatrix();
 		a.getZeroes();
