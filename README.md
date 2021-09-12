@@ -10,3 +10,4 @@ Games made in Java.
 | Last Stone          | 2021-08-28 |
 | Set Zeroes          | 2021-08-30 |
 | Guess The Number    | 2021-08-10 |
+| Two Number Target   | 2021-08-13 |

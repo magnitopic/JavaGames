@@ -31,7 +31,7 @@ public class TwoNumberTarget {
 			newList();
 			int added = 0;
 			for (int i = 0; i < this.list.size(); i++) {
-				for (int j = i+1; j < (this.list.size()-i); j++) {
+				for (int j = i + 1; j < (this.list.size() - i); j++) {
 					if (this.list.get(i) + this.list.get(j) == this.target) {
 						added++;
 					}
@@ -39,7 +39,7 @@ public class TwoNumberTarget {
 			}
 			if (added == 1) {
 				System.out.print("[");
-				for (int i = 0; i < this.list.size()-1; i++) {
+				for (int i = 0; i < this.list.size() - 1; i++) {
 					System.out.print(list.get(i) + ", ");
 				}
 				System.out.println(this.list.get(this.list.size() - 1) + "] target: " + this.target);
