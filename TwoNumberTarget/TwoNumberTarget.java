@@ -30,10 +30,8 @@ public class TwoNumberTarget {
 			newTarget();
 			newList();
 			int added = 0;
-			int charects = list.size() + 1; // We add one cause right as the for loop starts we take one away
-			for (int i = 0; i < charects; i++) {
-				charects--;
-				for (int j = 1; j < this.list.size()+1; j++) {
+			for (int i = 0; i < this.list.size(); i++) {
+				for (int j = i+1; j < (this.list.size()-i); j++) {
 					if (this.list.get(i) + this.list.get(j) == this.target) {
 						added++;
 					}
@@ -41,7 +39,7 @@ public class TwoNumberTarget {
 			}
 			if (added == 1) {
 				System.out.print("[");
-				for (int i = 0; i < this.list.size(); i++) {
+				for (int i = 0; i < this.list.size()-1; i++) {
 					System.out.print(list.get(i) + ", ");
 				}
 				System.out.println(this.list.get(this.list.size() - 1) + "] target: " + this.target);
@@ -53,7 +51,6 @@ public class TwoNumberTarget {
 	public static void main(String[] args) {
 		TwoNumberTarget a = new TwoNumberTarget();
 		a.filters();
-		System.out.println(a.list.size());
 	}
 
 }
