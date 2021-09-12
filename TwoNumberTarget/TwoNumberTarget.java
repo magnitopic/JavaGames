@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TwoNumberTarget {
 	private int target;
-	private ArrayList<Integer> list;
+	public ArrayList<Integer> list;
 	private ArrayList<ArrayList<Integer>> result;
 
 	public TwoNumberTarget() {
@@ -33,7 +33,7 @@ public class TwoNumberTarget {
 			int charects = list.size() + 1; // We add one cause right as the for loop starts we take one away
 			for (int i = 0; i < charects; i++) {
 				charects--;
-				for (int j = 1; j < this.list.size(); j++) {
+				for (int j = 1; j < this.list.size()+1; j++) {
 					if (this.list.get(i) + this.list.get(j) == this.target) {
 						added++;
 					}
@@ -53,6 +53,7 @@ public class TwoNumberTarget {
 	public static void main(String[] args) {
 		TwoNumberTarget a = new TwoNumberTarget();
 		a.filters();
+		System.out.println(a.list.size());
 	}
 
 }
