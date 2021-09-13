@@ -2,6 +2,8 @@ package TwoNumberTarget;
 
 import java.util.ArrayList;
 
+// This program is explained at this link, exercise 19: https://altocodigo.blogspot.com/p/ejercicios-python.html
+
 public class TwoNumberTarget {
 	private int target;
 	public ArrayList<Integer> list;
