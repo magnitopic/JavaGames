@@ -47,11 +47,26 @@ public class Tree {
 		} else if (newNumber < nodeImOn.value) {
 			nodeImOn.leftSon = new Node(newNumber);
 			System.out.println("Saved in leftSon");
+		}else{
+			System.out.println("Value already exists in Tree");
 		}
 	}
 
-	public void search() {
-
+	public void search(int search) {
+		Node nodeImOn = root;
+		while ((search > nodeImOn.value && nodeImOn.rightSon != null)
+				|| (search < nodeImOn.value && nodeImOn.leftSon != null)) {
+			if (search > nodeImOn.value) {
+				nodeImOn = nodeImOn.rightSon;
+			} else if (search < nodeImOn.value) {
+				nodeImOn = nodeImOn.leftSon;
+			}
+		}
+		if (search == nodeImOn.value) {
+			System.out.println(search+" is in the Tree structure");
+		} else{
+			System.out.println(search+" is not in the Tree structure");
+		}
 	}
 
 	public void show() {
@@ -64,8 +79,10 @@ public class Tree {
 	public static void main(String[] args) {
 		Tree a = new Tree(6);
 		a.insert(9);
+		a.insert(9);
 		a.insert(10);
 		a.insert(8);
+		a.search(12);
 		a.show();
 	}
 }
