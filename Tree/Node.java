@@ -5,9 +5,7 @@ public class Node {
 	public Node leftSon;
 	public Node rightSon;
 
-
 	public Node(int value) {
 		this.value = value;
 	}
-
 }
