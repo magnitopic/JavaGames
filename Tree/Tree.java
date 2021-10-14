@@ -84,12 +84,33 @@ public class Tree {
 	}
 
 	public static void main(String[] args) {
-		Tree a = new Tree(6);
-		a.insert(9);
-		a.insert(9);
-		a.insert(10);
-		a.insert(8);
-		a.search(12);
-		a.show();
+		Tree tree = new Tree(6);
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("You have 3 options: ");
+		while(true){
+			System.out.println("Insert a new number, find a number or show the numbers.");
+			String response=scanner.nextLine().toLowerCase();
+			if(response.equals("insert")){
+        System.out.println("Give me a value to insert.");
+        boolean isAnInt = scanner.hasNextInt();
+        if(isAnInt){
+          int value = scanner.nextInt();
+				  scanner.nextLine();
+          tree.insert(value);
+        }
+      }else if(response.equals("find")){
+        System.out.println("What should I look for?");
+        boolean isAnInt = scanner.hasNextInt();
+        if(isAnInt){
+          int value = scanner.nextInt();
+				  scanner.nextLine();
+          tree.search(value);
+        }
+			}else if(response.equals("show")){
+        tree.show();
+			}else{
+				System.out.println("Invalid input. Try again.");
+			}
+		}
 	}
 }
