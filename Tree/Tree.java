@@ -69,11 +69,18 @@ public class Tree {
 		}
 	}
 
+	public void travel(Node ThisNode){
+		System.out.println(ThisNode.value);
+		if(ThisNode.leftSon!=null){
+			travel(ThisNode.leftSon);
+		}
+		if(ThisNode.rightSon!=null){
+			travel(ThisNode.rightSon);
+		}
+	}
+	
 	public void show() {
-		System.out.println("Root: "+root.value);
-		System.out.println(root.rightSon.value);
-		System.out.println(root.rightSon.rightSon.value);
-		System.out.println(root.rightSon.leftSon.value);
+		travel(root);
 	}
 
 	public static void main(String[] args) {
