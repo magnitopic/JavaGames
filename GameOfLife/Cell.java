@@ -4,35 +4,20 @@ import java.util.ArrayList;
 
 public class Cell{
 	public boolean alive;
-	public int id;
+	public int x;
+  public int y;
 
-	public Cell N;
-	public Cell S;
-	public Cell E;
-	public Cell W;
-	public Cell NE;
-	public Cell NW;
-	public Cell SE;
-	public Cell SW;
-  public ArrayList neighbours<Cell>;
-
-  public void firstGeneration(){
-    this.neighbours=new ArrayList<Cell>();
-    neighbours.add(N);
-    neighbours.add(S);
-    neighbours.add(E);
-    neighbours.add(W);
-    neighbours.add(NE);
-    neighbours.add(NW);
-    neighbours.add(SE);
-    neighbours.add(SW);
-    newGeneration();
+  public Cell(boolean alive, int x, int y) {
+    this.alive = alive;
+    this.x = x;
+    this.y = y;
   }
 
+
 	public void newGeneration() {
-		for(int i=0; i<7;i++){
+		/* for(int i=0; i<7;i++){
       
-    }
+    } */
 	}
 
   public static void main(String[] args) {
