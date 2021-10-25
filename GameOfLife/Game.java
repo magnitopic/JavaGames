@@ -19,4 +19,23 @@ public class Game{
 			this.board.add(row);			
 		}
 	}
+
+	public void printBoard() {
+		for(int i=0;i<29;i++){
+			System.out.println("");
+			for(int j=0;j<29;j++){
+				if(board.get(i).get(j).alive){
+					System.out.print(" ■ ");
+				}else{
+					System.out.print(" □ ");
+				}
+			}		
+		}
+	}
+
+	public static void main(String[] args) {
+		Game game=new Game();
+		game.newGame();
+		game.printBoard();
+	}
 }

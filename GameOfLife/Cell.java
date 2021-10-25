@@ -13,16 +13,7 @@ public class Cell{
     this.y = y;
   }
 
-
 	public void newGeneration() {
-		/* for(int i=0; i<7;i++){
-      
-    } */
-	}
-
-  public static void main(String[] args) {
-		Cell cell=new Cell();
-    cell.newGeneration();
-    System.out.print(cell.num);
+		
 	}
 }
