@@ -16,7 +16,7 @@ public class Game{
 				Cell cell=new Cell(false,i,j);
 				row.add(cell);
 			}
-			this.board.add(row);			
+			this.board.add(row);
 		}
 	}
 
@@ -29,8 +29,12 @@ public class Game{
 				}else{
 					System.out.print(" □ ");
 				}
-			}		
+			}
 		}
+	}
+
+	public void test() {
+		/* board.get(5).get(5).getNeighbours(board); */
 	}
 
 	public static void main(String[] args) {
