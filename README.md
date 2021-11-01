@@ -12,4 +12,4 @@ Games made in Java.
 | Guess The Number    | 2021-08-10 |
 | Two Number Target   | 2021-08-13 |
 |Tree|2021-10-14 |
-|Game Of Life|In progress|
+|Game Of Life|2021-11-1|

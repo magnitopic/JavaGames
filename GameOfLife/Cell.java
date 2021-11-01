@@ -32,6 +32,8 @@ public class Cell {
 	}
 
 	public void newGeneration() {
+		// Goes over the rules to determine if it should be dead or alive
+		// (see Rules.png for referance)
 		int counter = 0;
 		for (int i = 0; i < neighbours.size(); i++) {
 			if (neighbours.get(i).alive) {

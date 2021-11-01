@@ -136,6 +136,8 @@ public class Game {
 
 	}
 
+	// This function checks that the user input is a number and will ask until it
+	// gets one. Made it to simplify the code that deals with the user.
 	public int isInputInt(Scanner scanner) {
 		while (true) {
 			boolean isAnInt = scanner.hasNextInt();
