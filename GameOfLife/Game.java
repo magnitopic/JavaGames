@@ -1,7 +1,6 @@
 package GameOfLife;
 
 import java.util.ArrayList;
-import static java.util.concurrent.TimeUnit.*;
 import java.lang.Math;
 import java.util.Scanner;
 
