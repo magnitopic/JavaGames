@@ -46,14 +46,14 @@ public class Game {
 
 	public void printBoard() {
 		// Goes through the Cells in the matrix and prints if they are alive (with ■) or
-		// if they are dead (with □)
+		// if they are dead (with ·)
 		for (int i = 0; i < board.size(); i++) {
 			System.out.println("");
 			for (int j = 0; j < board.get(0).size(); j++) {
 				if (board.get(i).get(j).alive) {
 					System.out.print(" ■ ");
 				} else {
-					System.out.print(" □ ");
+					System.out.print(" · ");
 				}
 			}
 		}
@@ -91,7 +91,7 @@ public class Game {
 		System.out.println("This is a 0 player game. It is composed of a 30X30 matirx of alive or dead cells.");
 		System.out.println("Each turn, rules will aplay to all cells (refer to Rules.png).");
 		System.out.println("And the result will be printed on the terminal.");
-		System.out.println("Alive cells will be represented as ■. And dead cells will be represented with □.");
+		System.out.println("Alive cells will be represented as ■. And dead cells will be represented with ·");
 		System.out.println("");
 		System.out.println("1. Input initial alive cells.");
 		System.out.println("2. Generate random alive cells.");
