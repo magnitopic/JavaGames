@@ -13,5 +13,5 @@ Games made in Java.
 | Two Number Target   | 2021-08-13 |
 |Tree|2021-10-14 |
 |Game Of Life|2021-11-1|
-|DeadAndWounded|In progress|
+|Bulls and Cows|In progress|
 |Herds|In progress|
