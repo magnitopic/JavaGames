@@ -91,7 +91,6 @@ public class BullsAndCows {
     );
     System.out.println("==========================");
     boolean playing = true;
-    System.out.println(this.num);
     while (playing) {
       this.userNum = getUserInput(scanner);
       trys--;
@@ -101,11 +100,11 @@ public class BullsAndCows {
       System.out.println("==========================");
       if (this.num.equals(userNum)) {
         System.out.println(
-          "You win! You guessed " + num + " in " + (15 - this.trys) + " trys."
+          "You win! You guessed " + this.num + " in " + (15 - this.trys) + " trys."
         );
         playing = false;
       } else if (trys <= 0) {
-        System.out.println("You have run out of trys. You lose.");
+        System.out.println("You have run out of trys. You lose. The number was "+this.num);
         playing = false;
       }
     }
