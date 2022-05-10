@@ -3,7 +3,10 @@ package GameOfLife;
 import java.util.ArrayList;
 
 public class Cell {
+	// current state of cell
 	public boolean alive;
+	// next generation state
+	public boolean proposedChanges;
 	public int x;
 	public int y;
 	public ArrayList<Cell> neighbours;
@@ -31,7 +34,7 @@ public class Cell {
 		}
 	}
 
-	public void newGeneration() {
+	public void proposeChanges() {
 		// Goes over the rules to determine if it should be dead or alive
 		// (see Rules.png for referance)
 		int counter = 0;
@@ -41,9 +44,13 @@ public class Cell {
 			}
 		}
 		if (counter < 2 || counter < 3) {
-			this.alive = false;
+			this.proposedChanges = false;
 		} else if (counter == 3) {
-			this.alive = true;
+			this.proposedChanges = true;
 		}
+	}
+
+	public void makeChanges(){
+		this.alive=this.proposedChanges;
 	}
 }
