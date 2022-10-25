@@ -14,4 +14,5 @@ Games made in Java.
 | Tree                | 2021-10-14  |
 | Game Of Life        | 2021-11-1   |
 | Bulls and Cows      | 2022-01-01  |
+| Battleship          | 2022-10-25  |
 | Herds               | In progress |

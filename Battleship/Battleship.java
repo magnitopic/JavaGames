@@ -6,15 +6,16 @@ public class Battleship {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Scanner sn = new Scanner(System.in);
-		String[][] tableroAlianza = new String[10][10];
-		String[][] tableroImperio = new String[10][10];
+		String[][] player1Board = new String[10][10];
+		String[][] player2Board = new String[10][10];
 		int opt;
 
+		System.out.print("\033[H\033[2J");
 		// pedir que tipo de juego
 		do {
-			System.out.println("Tipo de partida:");
-			System.out.println("1. Un jugador");
-			System.out.println("2. Dos jugadores");
+			System.out.println("Type of game:");
+			System.out.println("1. Single player");
+			System.out.println("2. Two players");
 			System.out.print("--> ");
 			opt = sc.nextInt();
 		} while (opt != 1 && opt != 2);
@@ -25,7 +26,7 @@ public class Battleship {
 
 		// user 1
 		do {
-			System.out.println("Jugador 1, quieres general la posición de las naves de manera aleatoria?(y,n)");
+			System.out.println("Player 1, would you like your ships to be placed randomly?(y,n)");
 			System.out.print("--> ");
 			opt2 = sn.nextLine();
 		} while (!opt2.equalsIgnoreCase("y") && !opt2.equalsIgnoreCase("n"));
@@ -33,20 +34,20 @@ public class Battleship {
 		if (opt2.equalsIgnoreCase("n")) {
 			for (int j = 0; j < 6; j++) {
 				do {
-					System.out.print("Introduce la posición X de la nave " + (j + 1) + ": ");
+					System.out.print("Enter the X coordinate you want for ship " + (j + 1) + ": ");
 					x = sc.nextInt();
-					System.out.print("Introduce la posición Y de la nave " + (j + 1) + ": ");
+					System.out.print("Enter the Y coordinate you want for ship " + (j + 1) + ": ");
 					y = sc.nextInt();
-				} while (!(x <= 9 && x >= 0 && y <= 9 && y >= 0) || tableroAlianza[x][y] == "H");
-				tableroAlianza[x][y] = "H";
+				} while (!(x <= 9 && x >= 0 && y <= 9 && y >= 0) || player1Board[x][y] == "H");
+				player1Board[x][y] = "H";
 			}
 		} else
-			randomTable(tableroAlianza);
+			randomTable(player1Board);
 
 		// user 2
 		if (opt == 2) {
 			do {
-				System.out.println("Jugador 2, quieres general la posición de las naves de manera aleatoria?(y,n)");
+				System.out.println("Player 2, would you like your ships to be placed randomly?(y,n)");
 				System.out.print("--> ");
 				opt2 = sn.nextLine();
 			} while (!opt2.equalsIgnoreCase("y") && !opt2.equalsIgnoreCase("n"));
@@ -54,40 +55,49 @@ public class Battleship {
 			if (opt2.equalsIgnoreCase("n")) {
 				for (int j = 0; j < 6; j++) {
 					do {
-						System.out.print("Introduce la posición X de la nave " + (j + 1) + ": ");
+						System.out.print("Enter the X coordinate you want for ship " + (j + 1) + ": ");
 						x = sc.nextInt();
-						System.out.print("Introduce la posición Y de la nave " + (j + 1) + ": ");
+						System.out.print("Enter the Y coordinate you want for ship " + (j + 1) + ": ");
 						y = sc.nextInt();
-					} while (!(x <= 9 && x >= 0 && y <= 9 && y >= 0) || tableroImperio[x][y] == "H");
-					tableroImperio[x][y] = "H";
+					} while (!(x <= 9 && x >= 0 && y <= 9 && y >= 0) || player2Board[x][y] == "H");
+					player2Board[x][y] = "H";
 				}
 			} else
-				randomTable(tableroImperio);
+				randomTable(player2Board);
 		} else
-			randomTable(tableroImperio);
+			randomTable(player2Board);
 
 		// gameplay
 
 		while (true) {
 			// player 1
 			System.out.print("\033[H\033[2J");
-			System.out.println("Player 1's turn.");
-			printBoard(tableroAlianza, "Your board");
-			printBoardFull(tableroImperio, "Enemy board");
-			makeLauch(tableroImperio, sc);
-			if (checkGameEnd(tableroImperio)) {
+			System.out.println("Player 1's turn.\n");
+			printBoardFull(player1Board, "Your board");
+			printBoard(player2Board, "Enemy board");
+			makeLauch(player2Board, sc);
+			if (checkGameEnd(player2Board)) {
 				System.out.println("Player 1 wins!!!");
 				break;
 			}
+			System.out.println("Press enter to continue.");
+			sn.nextLine();
 
 			// player 2
-			System.out.print("\033[H\033[2J");
-			System.out.println("Player 2's turn.");
-			printBoard(tableroImperio, "Your board");
-			printBoardFull(tableroAlianza, "Enemy board");
-			if (checkGameEnd(tableroAlianza)) {
-				System.out.println("Player 2 wins!!!");
-				break;
+			if (opt == 2) {
+				System.out.print("\033[H\033[2J");
+				System.out.println("Player 2's turn.\n");
+				printBoardFull(player2Board, "Your board");
+				printBoard(player1Board, "Enemy board");
+				makeLauch(player1Board, sc);
+				if (checkGameEnd(player1Board)) {
+					System.out.println("Player 2 wins!!!");
+					break;
+				}
+				System.out.println("Press enter to continue.");
+				sn.nextLine();
+			} else {
+				makeLaunchIA(player1Board);
 			}
 		}
 
@@ -106,34 +116,52 @@ public class Battleship {
 		return true;
 	}
 
+	public static void makeLaunchIA(String[][] board) {
+		int x, y;
+		boolean flag = false;
+
+		do {
+			x = (int) (Math.random() * 10);
+			y = (int) (Math.random() * 10);
+			flag = false;
+			if (board[y][x] != null) {
+				if (board[y][x].equalsIgnoreCase("h"))
+					board[y][x] = "X";
+				else
+					flag = true;
+			} else
+				board[y][x] = "•";
+		} while (flag);
+
+	}
+
 	public static void makeLauch(String[][] board, Scanner sc) {
 		int x, y;
 		boolean flag = false;
 		do {
 			flag = false;
 			do {
-				System.out.print("Intoduce la cordenada X donde se quiere hacer un lanzamiento: ");
+				System.out.print("Enter the X coordinate you wish to attack: ");
 				x = sc.nextInt();
-				System.out.print("Intoduce la cordenada Y donde se quiere hacer un lanzamiento: ");
+				System.out.print("Enter the Y coordinate you wish to attack: ");
 				y = sc.nextInt();
 			} while (!(x <= 9 && x >= 0 && y <= 9 && y >= 0));
 
-			if (board[x][y] != null) {
-				if (board[x][y].equalsIgnoreCase("h")) {
-					System.out.println("Nave destruida!!");
-					board[x][y] = "X";
-				} else if (board[x][y].equalsIgnoreCase("a")) {
+			if (board[y][x] != null) {
+				if (board[y][x].equalsIgnoreCase("h")) {
+					System.out.println("\nWe have hit and sunk a battleship!!!\n");
+					board[y][x] = "X";
+				} else if (board[y][x].equalsIgnoreCase("•")) {
 					flag = true;
-					System.out.println("Esta posición ya ha sido atacada.");
-				} else if (board[x][y].equalsIgnoreCase("x")) {
+					System.out.println("\nThis possition has already been ataked...\n");
+				} else if (board[y][x].equalsIgnoreCase("x")) {
 					flag = true;
-					System.out.println("Esta nave ya ha sido destruida.");
+					System.out.println("\nThis battleship is alredy sunk...\n");
 				}
 			} else {
-				System.out.println("No hay nada en esta posición");
-				board[x][y] = "A";
+				System.out.println("\nNothing was hit in this possition.\n");
+				board[y][x] = "•";
 			}
-
 		} while (flag);
 	}
 
@@ -151,15 +179,15 @@ public class Battleship {
 	}
 
 	public static void printBoardFull(String[][] board, String name) {
-		for (int j = 0; j < board.length * 2 + 1; j++)
+		for (int j = 0; j < board.length * 2 + 4; j++)
 			System.out.print("- ");
 
 		System.out.print("\n");
 		for (int i = 0; i < name.length(); i++)
-			System.out.print("    " + name.charAt(i));
+			System.out.print("   " + name.charAt(i));
 
 		System.out.print("\n");
-		for (int j = 0; j < board.length * 2 + 1; j++)
+		for (int j = 0; j < board.length * 2 + 4; j++)
 			System.out.print("- ");
 
 		System.out.print("\n ");
@@ -180,15 +208,15 @@ public class Battleship {
 	}
 
 	public static void printBoard(String[][] board, String name) {
-		for (int j = 0; j < board.length * 2 + 1; j++)
+		for (int j = 0; j < board.length * 2 + 4; j++)
 			System.out.print("- ");
 
 		System.out.print("\n");
 		for (int i = 0; i < name.length(); i++)
-			System.out.print("    " + name.charAt(i));
+			System.out.print("   " + name.charAt(i));
 
 		System.out.print("\n");
-		for (int j = 0; j < board.length * 2 + 1; j++)
+		for (int j = 0; j < board.length * 2 + 4; j++)
 			System.out.print("- ");
 
 		System.out.print("\n ");
@@ -200,7 +228,7 @@ public class Battleship {
 			for (int j = 0; j < board[i].length; j++) {
 				if (board[i][j] == null)
 					System.out.print("|   ");
-				else if (board[i][j].equalsIgnoreCase("h"))
+				else if (!board[i][j].equalsIgnoreCase("h"))
 					System.out.print("| " + board[i][j] + " ");
 				else
 					System.out.print("|   ");
